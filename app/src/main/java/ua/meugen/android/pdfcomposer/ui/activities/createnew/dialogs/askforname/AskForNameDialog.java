@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ua.meugen.android.pdfcomposer.R;
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.utils.CollectionUtils;
 import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
@@ -38,8 +39,7 @@ public class AskForNameDialog extends BaseDialogFragment<AskForNameState, AskFor
         return dialog;
     }
 
-    @Inject @Named(BaseActivityModule.ACTIVITY_CONTEXT)
-    Context context;
+    @Inject @ActivityContext Context context;
     @Inject AskForNameListener listener;
 
     private AlertDialog alertDialog;

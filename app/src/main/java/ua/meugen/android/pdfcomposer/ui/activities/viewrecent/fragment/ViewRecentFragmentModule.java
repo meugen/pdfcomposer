@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 
 import dagger.Binds;
 import dagger.Module;
-import ua.meugen.android.pdfcomposer.app.di.PerFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragmentModule;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.EmptyStateImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
@@ -16,18 +15,18 @@ import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.view.View
 @Module(includes = BaseFragmentModule.class)
 public abstract class ViewRecentFragmentModule {
 
-    @Binds @PerFragment
+    @Binds
     abstract Fragment bindFragment(final ViewRecentFragment fragment);
 
-    @Binds @PerFragment
+    @Binds
     abstract ViewRecentPresenter bindPresenter(final ViewRecentPresenterImpl impl);
 
-    @Binds @PerFragment
+    @Binds
     abstract MvpState bindState(final EmptyStateImpl impl);
 
-    @Binds @PerFragment
+    @Binds
     abstract ViewRecentView bindView(final ViewRecentFragment fragment);
 
-    @Binds @PerFragment
+    @Binds
     abstract OnPdfItemClickListener bindPdfItemClickListener(final ViewRecentFragment fragment);
 }

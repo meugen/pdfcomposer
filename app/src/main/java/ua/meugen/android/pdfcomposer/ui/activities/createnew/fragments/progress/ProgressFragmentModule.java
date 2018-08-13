@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 
 import dagger.Binds;
 import dagger.Module;
-import ua.meugen.android.pdfcomposer.app.di.PerFragment;
 import ua.meugen.android.pdfcomposer.model.actions.AppActionApi;
 import ua.meugen.android.pdfcomposer.model.actions.PdfExportActionApi;
 import ua.meugen.android.pdfcomposer.model.actions.PdfExportRequest;
@@ -19,19 +18,19 @@ import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.
 @Module(includes = BaseFragmentModule.class)
 public abstract class ProgressFragmentModule {
 
-    @Binds @PerFragment
+    @Binds
     abstract Fragment bindFragment(final ProgressFragment fragment);
 
-    @Binds @PerFragment
+    @Binds
     abstract ProgressPresenter bindPresenter(final ProgressPresenterImpl impl);
 
-    @Binds @PerFragment
+    @Binds
     abstract ProgressState bindState(final ProgressStateImpl impl);
 
-    @Binds @PerFragment
+    @Binds
     abstract ProgressView bindView(final ProgressFragment fragment);
 
-    @Binds @PerFragment
+    @Binds
     abstract AppActionApi<PdfExportRequest, PdfExportProgressEvent> bindPdfExportActionApi(
             final PdfExportActionApi api);
 }

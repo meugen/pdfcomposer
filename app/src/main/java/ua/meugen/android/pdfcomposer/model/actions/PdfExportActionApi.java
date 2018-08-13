@@ -24,6 +24,7 @@ import javax.inject.Named;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import ua.meugen.android.pdfcomposer.R;
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.db.dao.PdfItemDao;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
@@ -35,8 +36,7 @@ public class PdfExportActionApi implements AppActionApi<PdfExportRequest, PdfExp
 
     private static final String TAG = PdfExportActionApi.class.getSimpleName();
 
-    @Inject @Named(BaseActivityModule.ACTIVITY_CONTEXT)
-    Context context;
+    @Inject @ActivityContext Context context;
     @Inject PdfItemDao pdfItemDao;
 
     private Paint paint;

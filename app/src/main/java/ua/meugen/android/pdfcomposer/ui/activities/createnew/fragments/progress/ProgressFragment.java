@@ -12,6 +12,7 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.databinding.FragmentProgressBinding;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.events.PdfExportProgressEvent;
@@ -37,8 +38,7 @@ public class ProgressFragment extends BaseFragment<ProgressState, ProgressPresen
         return fragment;
     }
 
-    @Inject @Named(BaseActivityModule.ACTIVITY_CONTEXT)
-    Context context;
+    @Inject @ActivityContext Context context;
 
     private FragmentProgressBinding binding;
 

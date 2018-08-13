@@ -21,6 +21,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ua.meugen.android.pdfcomposer.R;
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.databinding.FragmentCreateNewBinding;
 import ua.meugen.android.pdfcomposer.model.utils.BitmapUtils;
 import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
@@ -33,8 +34,7 @@ import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew
 public class CreateNewFragment extends BaseFragment<CreateNewState, CreateNewPresenter>
         implements CreateNewView {
 
-    @Inject @Named(BaseActivityModule.ACTIVITY_CONTEXT)
-    Context context;
+    @Inject @ActivityContext Context context;
 
     private FragmentCreateNewBinding binding;
 

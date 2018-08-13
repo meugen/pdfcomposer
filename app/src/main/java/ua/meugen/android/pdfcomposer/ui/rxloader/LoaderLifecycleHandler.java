@@ -11,13 +11,13 @@ import javax.inject.Named;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.utils.RxUtils;
 import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 
 public class LoaderLifecycleHandler implements LifecycleHandler {
 
-    @Inject @Named(BaseActivityModule.ACTIVITY_CONTEXT)
-    Context context;
+    @Inject @ActivityContext Context context;
     @Inject LoaderManager manager;
 
     @Inject

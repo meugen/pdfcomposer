@@ -17,7 +17,9 @@ public class PdfComposer extends Application implements HasActivityInjector {
     @Override
     public void onCreate() {
         super.onCreate();
-        DaggerAppComponent.builder().create(this).inject(this);
+        DaggerAppComponent.builder()
+                .create(this)
+                .inject(this);
     }
 
     @Override

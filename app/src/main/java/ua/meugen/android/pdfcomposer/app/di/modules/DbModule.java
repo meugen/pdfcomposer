@@ -8,6 +8,7 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.AppContext;
 import ua.meugen.android.pdfcomposer.model.db.AppDatabase;
 import ua.meugen.android.pdfcomposer.model.db.dao.PdfItemDao;
 
@@ -16,7 +17,7 @@ public abstract class DbModule {
 
     @Provides @Singleton
     static AppDatabase provideAppDatabase(
-            @Named(AppModule.APP_CONTEXT) final Context context) {
+            @AppContext final Context context) {
         return Room
                 .databaseBuilder(context, AppDatabase.class, "pdfcomposer")
                 .fallbackToDestructiveMigration()

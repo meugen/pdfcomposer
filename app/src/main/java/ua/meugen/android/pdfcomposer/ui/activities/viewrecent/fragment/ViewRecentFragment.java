@@ -17,6 +17,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import ua.meugen.android.pdfcomposer.R;
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.databinding.FragmentViewRecentBinding;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
 import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
@@ -31,8 +32,7 @@ import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.view.View
 public class ViewRecentFragment extends BaseFragment<MvpState, ViewRecentPresenter>
         implements ViewRecentView, OnPdfItemClickListener {
 
-    @Inject @Named(BaseActivityModule.ACTIVITY_CONTEXT)
-    Context context;
+    @Inject @ActivityContext Context context;
     @Inject PdfItemsAdapter adapter;
 
     private FragmentViewRecentBinding binding;

@@ -12,12 +12,11 @@ import java.util.List;
 import javax.inject.Inject;
 import javax.inject.Named;
 
-import ua.meugen.android.pdfcomposer.app.di.PerFragment;
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.databinding.ItemExportedPdfBinding;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
 import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 
-@PerFragment
 public class PdfItemsAdapter extends RecyclerView.Adapter<PdfItemsAdapter.Holder> {
 
     private final LayoutInflater inflater;
@@ -26,7 +25,7 @@ public class PdfItemsAdapter extends RecyclerView.Adapter<PdfItemsAdapter.Holder
 
     @Inject
     public PdfItemsAdapter(
-            @Named(BaseActivityModule.ACTIVITY_CONTEXT) final Context context,
+            @ActivityContext final Context context,
             final OnPdfItemClickListener listener) {
         this.inflater = LayoutInflater.from(context);
         this.listener = listener;

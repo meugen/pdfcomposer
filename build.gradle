@@ -15,6 +15,16 @@ buildscript {
     }
 }
 
+ext.packages = [
+        support: 'com.android.support',
+        dagger: 'com.google.dagger',
+        rxjava: 'io.reactivex.rxjava2',
+        room: 'android.arch.persistence.room']
+ext.versions = [
+        support: '27.1.1',
+        dagger: '2.17',
+        room: '1.1.1']
+
 allprojects {
     repositories {
         google()

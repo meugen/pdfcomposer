@@ -1,0 +1,14 @@
+package ua.meugen.android.pdfcomposer.app.di.qualifiers;
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+
+import javax.inject.Qualifier;
+import javax.inject.Scope;
+
+/**
+ * @author meugen
+ */
+@Qualifier
+@Retention(RetentionPolicy.SOURCE)
+public @interface AppContext {}

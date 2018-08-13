@@ -10,17 +10,14 @@ import dagger.Binds;
 import dagger.Module;
 import dagger.android.support.AndroidSupportInjectionModule;
 import ua.meugen.android.pdfcomposer.app.PdfComposer;
+import ua.meugen.android.pdfcomposer.app.di.qualifiers.AppContext;
 
-@Module(includes = {
-        AndroidSupportInjectionModule.class,
-        ActivitiesModule.class, DbModule.class})
+@Module
 public abstract class AppModule {
 
-    public static final String APP_CONTEXT = "appContext";
-
-    @Binds @Singleton
+    @Binds
     abstract Application bindApplication(final PdfComposer pdfComposer);
 
-    @Binds @Named(APP_CONTEXT) @Singleton
+    @Binds @AppContext
     abstract Context bindContext(final Application application);
 }
