@@ -6,14 +6,12 @@ import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
 import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.utils.RxUtils;
-import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 
 public class LoaderLifecycleHandler implements LifecycleHandler {
 

@@ -4,8 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DividerItemDecoration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,49 +14,38 @@ import java.io.File;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
-import ua.meugen.android.pdfcomposer.databinding.FragmentViewRecentBinding;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
-import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.OnPdfItemClickListener;
-import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.PdfItemsAdapter;
+import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.binding.ViewRecentBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.presenter.ViewRecentPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.view.ViewRecentView;
 
 
-public class ViewRecentFragment extends BaseFragment<MvpState, ViewRecentPresenter>
+public class ViewRecentFragment extends BaseFragment<MvpState, ViewRecentPresenter, ViewRecentBinding>
         implements ViewRecentView, OnPdfItemClickListener {
 
     @Inject @ActivityContext Context context;
-    @Inject PdfItemsAdapter adapter;
-
-    private FragmentViewRecentBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(
-            final LayoutInflater inflater,
+            @NonNull final LayoutInflater inflater,
             @Nullable final ViewGroup container,
             @Nullable final Bundle savedInstanceState) {
-        binding = FragmentViewRecentBinding.inflate(
-                inflater, container, false);
-        return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_view_recent,
+                container, false);
     }
 
     @Override
-    public void onViewCreated(
-            final View view,
-            @Nullable final Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        binding.recycler.addItemDecoration(new DividerItemDecoration(context,
-                DividerItemDecoration.VERTICAL));
-        binding.recycler.setAdapter(adapter);
-        binding.setHasItems(false);
+    public void onActivityCreated(@Nullable final Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        binding.setupRecycler();
+        binding.displayNoItems();
     }
 
     @Override
@@ -67,8 +56,7 @@ public class ViewRecentFragment extends BaseFragment<MvpState, ViewRecentPresent
 
     @Override
     public void displayItems(final List<PdfItemEntity> items) {
-        adapter.swapItems(items);
-        binding.setHasItems(items.size() > 0);
+        binding.displayItems(items);
     }
 
     @Override

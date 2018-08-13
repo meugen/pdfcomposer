@@ -8,6 +8,8 @@ import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragmentMod
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.EmptyStateImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.OnPdfItemClickListener;
+import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.binding.ViewRecentBinding;
+import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.binding.ViewRecentBindingImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.presenter.ViewRecentPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.presenter.ViewRecentPresenterImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.view.ViewRecentView;
@@ -26,6 +28,9 @@ public abstract class ViewRecentFragmentModule {
 
     @Binds
     abstract ViewRecentView bindView(final ViewRecentFragment fragment);
+
+    @Binds
+    abstract ViewRecentBinding bindBinding(final ViewRecentBindingImpl impl);
 
     @Binds
     abstract OnPdfItemClickListener bindPdfItemClickListener(final ViewRecentFragment fragment);

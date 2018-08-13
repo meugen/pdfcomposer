@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import dagger.Binds;
 import dagger.Module;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragmentModule;
+import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.binding.CreateNewBinding;
+import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.binding.CreateNewBindingImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.presenter.CreateNewPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.presenter.CreateNewPresenterImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.state.CreateNewState;
@@ -25,4 +27,7 @@ public abstract class CreateNewFragmentModule {
 
     @Binds
     abstract CreateNewView bindView(final CreateNewFragment fragment);
+
+    @Binds
+    abstract CreateNewBinding bindBinding(final CreateNewBindingImpl impl);
 }

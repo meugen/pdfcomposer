@@ -9,6 +9,8 @@ import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.Empty
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.MvpPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.EmptyStateImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
+import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.binding.MainBinding;
+import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.binding.MainBindingImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.view.MainView;
 
 @Module(includes = BaseFragmentModule.class)
@@ -25,4 +27,7 @@ public abstract class MainFragmentModule {
 
     @Binds
     abstract MainView bindView(final MainFragment fragment);
+
+    @Binds
+    abstract MainBinding bindBinding(MainBindingImpl impl);
 }

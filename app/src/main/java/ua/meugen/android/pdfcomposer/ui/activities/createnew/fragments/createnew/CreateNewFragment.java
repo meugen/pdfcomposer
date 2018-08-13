@@ -11,51 +11,42 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.Snackbar;
 import android.support.v4.content.ContextCompat;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
-import ua.meugen.android.pdfcomposer.databinding.FragmentCreateNewBinding;
-import ua.meugen.android.pdfcomposer.model.utils.BitmapUtils;
-import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragment;
+import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.binding.CreateNewBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.presenter.CreateNewPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.state.CreateNewState;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.view.CreateNewView;
 
 
-public class CreateNewFragment extends BaseFragment<CreateNewState, CreateNewPresenter>
+public class CreateNewFragment extends BaseFragment<CreateNewState, CreateNewPresenter, CreateNewBinding>
         implements CreateNewView {
 
     @Inject @ActivityContext Context context;
 
-    private FragmentCreateNewBinding binding;
-
     @Nullable
     @Override
     public View onCreateView(
-            final LayoutInflater inflater,
+            @NonNull final LayoutInflater inflater,
             @Nullable final ViewGroup container,
             @Nullable final Bundle savedInstanceState) {
-        binding = FragmentCreateNewBinding.inflate(
-                inflater, container, false);
-        return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_create_new,
+                container, false);
     }
 
     @Override
     public void onViewCreated(
-            final View view,
+            @NonNull final View view,
             @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.setView(this);
-        binding.text.addTextChangedListener(new TextWatcherImpl());
+        binding.setupListeners(this);
     }
 
     @Override
@@ -76,6 +67,11 @@ public class CreateNewFragment extends BaseFragment<CreateNewState, CreateNewPre
     @Override
     public void addPage() {
         presenter.addPage();
+    }
+
+    @Override
+    public void textChanged(final CharSequence text) {
+        presenter.onTextChanged(text.toString());
     }
 
     @Override
@@ -118,43 +114,13 @@ public class CreateNewFragment extends BaseFragment<CreateNewState, CreateNewPre
 
     @Override
     public void displayContent(final String imageUri, final String text) {
-        if (imageUri == null) {
-            binding.image.setImageResource(R.drawable.ic_photo_size_select_actual_black_48dp);
-        } else {
-            final int width = context.getResources().getInteger(R.integer.image_width);
-            final int height = context.getResources().getInteger(R.integer.image_height);
-            binding.image.setImageBitmap(BitmapUtils.tryDecodeBitmap(context,
-                    imageUri, width, height));
-        }
-        binding.text.setText(text);
+        binding.displayContent(imageUri, text);
     }
 
     @Override
     public void pageDidntComplete() {
-        Snackbar.make(binding.container,
+        Snackbar.make(binding.get(R.id.container),
                 R.string.message_page_didnt_complete,
                 Snackbar.LENGTH_LONG).show();
-    }
-
-    private class TextWatcherImpl implements TextWatcher {
-
-        @Override
-        public void beforeTextChanged(
-                final CharSequence s,
-                final int start,
-                final int count,
-                final int after) {}
-
-        @Override
-        public void onTextChanged(
-                final CharSequence s,
-                final int start,
-                final int before,
-                final int count) {}
-
-        @Override
-        public void afterTextChanged(final Editable s) {
-            presenter.onTextChanged(s.toString());
-        }
     }
 }

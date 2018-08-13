@@ -1,7 +1,7 @@
 package ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress;
 
-import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -9,22 +9,18 @@ import android.view.ViewGroup;
 
 import java.util.List;
 
-import javax.inject.Inject;
-import javax.inject.Named;
-
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
-import ua.meugen.android.pdfcomposer.databinding.FragmentProgressBinding;
+import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.events.PdfExportProgressEvent;
 import ua.meugen.android.pdfcomposer.model.utils.CollectionUtils;
-import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragment;
+import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.binding.ProgressBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.presenter.ProgressPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.state.ProgressState;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.view.ProgressView;
 
 
-public class ProgressFragment extends BaseFragment<ProgressState, ProgressPresenter>
+public class ProgressFragment extends BaseFragment<ProgressState, ProgressPresenter, ProgressBinding>
         implements ProgressView {
 
     public static ProgressFragment build(final String name, final List<PageContent> pages) {
@@ -38,18 +34,14 @@ public class ProgressFragment extends BaseFragment<ProgressState, ProgressPresen
         return fragment;
     }
 
-    @Inject @ActivityContext Context context;
-
-    private FragmentProgressBinding binding;
-
     @Nullable
     @Override
     public View onCreateView(
-            final LayoutInflater inflater,
+            @NonNull final LayoutInflater inflater,
             @Nullable final ViewGroup container,
             @Nullable final Bundle savedInstanceState) {
-        binding = FragmentProgressBinding.inflate(inflater, container, false);
-        return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_progress,
+                container, false);
     }
 
     @Override
@@ -60,6 +52,6 @@ public class ProgressFragment extends BaseFragment<ProgressState, ProgressPresen
 
     @Override
     public void onUpdateProgress(final PdfExportProgressEvent event) {
-        binding.setEvent(event);
+        binding.displayProgress(event);
     }
 }

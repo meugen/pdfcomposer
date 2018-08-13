@@ -11,6 +11,8 @@ public interface CreateNewView extends MvpView {
 
     void exportToPdf();
 
+    void textChanged(CharSequence text);
+
     void displayContent(String imageUri, String text);
 
     void pageDidntComplete();

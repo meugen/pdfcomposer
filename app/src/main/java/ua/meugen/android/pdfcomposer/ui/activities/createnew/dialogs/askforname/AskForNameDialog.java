@@ -14,13 +14,11 @@ import android.widget.EditText;
 import java.util.List;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.utils.CollectionUtils;
-import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseDialogFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.presenter.AskForNamePresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.state.AskForNameState;

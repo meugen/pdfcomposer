@@ -2,47 +2,44 @@ package ua.meugen.android.pdfcomposer.ui.activities.main.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
+import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
-import ua.meugen.android.pdfcomposer.databinding.FragmentMainBinding;
-import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.MvpPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.CreateNewActivity;
+import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.binding.MainBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.view.MainView;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.ViewRecentActivity;
 
-public class MainFragment extends BaseFragment<MvpState, MvpPresenter<MvpState>> implements MainView {
+public class MainFragment extends BaseFragment<MvpState, MvpPresenter<MvpState>, MainBinding> implements MainView {
 
     @Inject @ActivityContext Context context;
-
-    private FragmentMainBinding binding;
 
     @Nullable
     @Override
     public View onCreateView(
-            final LayoutInflater inflater,
+            @NonNull final LayoutInflater inflater,
             @Nullable final ViewGroup container,
             @Nullable final Bundle savedInstanceState) {
-        binding = FragmentMainBinding.inflate(
-                inflater, container, false);
-        return binding.getRoot();
+        return inflater.inflate(R.layout.fragment_main,
+                container, false);
     }
 
     @Override
     public void onViewCreated(
-            final View view,
+            @NonNull final View view,
             @Nullable final Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.setView(this);
+        binding.setupListeners(this);
     }
 
     @Override

@@ -19,7 +19,6 @@ import java.io.OutputStream;
 import java.util.Date;
 
 import javax.inject.Inject;
-import javax.inject.Named;
 
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
@@ -30,7 +29,6 @@ import ua.meugen.android.pdfcomposer.model.db.dao.PdfItemDao;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
 import ua.meugen.android.pdfcomposer.model.events.PdfExportProgressEvent;
 import ua.meugen.android.pdfcomposer.model.utils.BitmapUtils;
-import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 
 public class PdfExportActionApi implements AppActionApi<PdfExportRequest, PdfExportProgressEvent> {
 

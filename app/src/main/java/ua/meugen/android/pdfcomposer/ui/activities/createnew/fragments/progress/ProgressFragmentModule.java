@@ -9,6 +9,8 @@ import ua.meugen.android.pdfcomposer.model.actions.PdfExportActionApi;
 import ua.meugen.android.pdfcomposer.model.actions.PdfExportRequest;
 import ua.meugen.android.pdfcomposer.model.events.PdfExportProgressEvent;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragmentModule;
+import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.binding.ProgressBinding;
+import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.binding.ProgressBindingImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.presenter.ProgressPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.presenter.ProgressPresenterImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.state.ProgressState;
@@ -29,6 +31,9 @@ public abstract class ProgressFragmentModule {
 
     @Binds
     abstract ProgressView bindView(final ProgressFragment fragment);
+
+    @Binds
+    abstract ProgressBinding bindBinding(final ProgressBindingImpl impl);
 
     @Binds
     abstract AppActionApi<PdfExportRequest, PdfExportProgressEvent> bindPdfExportActionApi(
