@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">PDF Composer</string>
+
+    <string name="title_create_new">Create new</string>
+    <string name="title_view_recent">View recent</string>
+    <string name="title_name_for_document">Name for the document</string>
+    <string name="title_open_file_for_view">Open file for view</string>
+
+    <string name="button_create_new_document">Create new document</string>
+    <string name="button_view_recent_documents">View recent documents</string>
+    <string name="button_load_image">Load image</string>
+    <string name="button_add_page">Add page</string>
+    <string name="button_export_to_pdf">Export to PDF</string>
+    <string name="button_ok">OK</string>
+    <string name="button_cancel">Cancel</string>
+
+    <string name="message_page_didnt_complete">The page didn\'t complete</string>
+    <string name="message_no_recent_pdf_items">No recent PDF items</string>
+
+    <string name="pdf_export_progress" formatted="true">Exported %d page(s) of %d</string>
+
+    <string name="tools_pdf_export_progress">Exported 1 page(s) of 10</string>
+    <string name="tools_pdf_name">Test.pdf</string>
+    <string name="tools_pdf_size">200 KB</string>
+    <string name="tools_pdf_date">10.12.2017</string>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <integer name="recent_pdf_items_span_count">1</integer>
+
+    <integer name="image_width">1000</integer>
+    <integer name="image_height">1000</integer>
+</resources>

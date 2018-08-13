@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="ua.meugen.android.pdfcomposer.model.events.PdfExportProgressEvent"/>
+        <variable name="event" type="PdfExportProgressEvent"/>
+    </data>
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ProgressBar
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/progress_bar"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="parent"
+            android:layout_margin="@dimen/default_margin"
+            style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+            app:progress="@{event}"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/progress_bar"
+            android:layout_margin="@dimen/default_margin"
+            tools:text="@string/tools_pdf_export_progress"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            app:progress="@{event}"/>
+
+    </android.support.constraint.ConstraintLayout>
+</layout>
