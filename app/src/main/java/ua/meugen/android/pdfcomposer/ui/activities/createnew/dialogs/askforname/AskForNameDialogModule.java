@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 
 import dagger.Binds;
 import dagger.Module;
-import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragmentModule;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.presenter.AskForNamePresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.presenter.AskForNamePresenterImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.state.AskForNameState;

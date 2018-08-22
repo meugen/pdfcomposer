@@ -7,9 +7,8 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.View;
 
-import javax.inject.Inject;
-
-import dagger.android.support.AndroidSupportInjection;
+import ua.meugen.android.pdfcomposer.app.PdfComposer;
+import ua.meugen.android.pdfcomposer.ui.activities.base.Injector;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.binding.Binding;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.MvpPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.BaseState;
@@ -19,9 +18,9 @@ import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.view.MvpView;
 public abstract class BaseFragment<S extends MvpState, P extends MvpPresenter<S>, B extends Binding> extends Fragment
         implements MvpView {
 
-    @Inject protected P presenter;
-    @Inject protected S state;
-    @Inject protected B binding;
+    public P presenter;
+    public S state;
+    public B binding;
 
     @Override
     public void onViewCreated(
@@ -39,7 +38,7 @@ public abstract class BaseFragment<S extends MvpState, P extends MvpPresenter<S>
 
     @Override
     public void onAttach(final Context context) {
-        AndroidSupportInjection.inject(this);
+        inject(context);
         super.onAttach(context);
     }
 
@@ -68,4 +67,11 @@ public abstract class BaseFragment<S extends MvpState, P extends MvpPresenter<S>
         super.onDestroy();
         presenter.clear();
     }
+
+    private void inject(final Context context) {
+        final Injector injector = createInjector();
+        injector.inject(PdfComposer.from(context).getAppComponent());
+    }
+
+    protected abstract Injector createInjector();
 }

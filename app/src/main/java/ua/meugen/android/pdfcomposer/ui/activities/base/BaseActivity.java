@@ -1,30 +1,25 @@
 package ua.meugen.android.pdfcomposer.ui.activities.base;
 
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 
-import javax.inject.Inject;
+import ua.meugen.android.pdfcomposer.app.PdfComposer;
 
-import dagger.android.AndroidInjection;
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.support.HasSupportFragmentInjector;
-
-public abstract class BaseActivity extends AppCompatActivity
-        implements HasSupportFragmentInjector {
-
-    @Inject DispatchingAndroidInjector<Fragment> fragmentInjector;
+public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
-        AndroidInjection.inject(this);
+        inject();
         super.onCreate(savedInstanceState);
     }
 
-    @Override
-    public AndroidInjector<Fragment> supportFragmentInjector() {
-        return fragmentInjector;
+    private void inject() {
+        final Injector injector = createInjector();
+        injector.inject(PdfComposer.from(this).getAppComponent());
     }
+
+    @NonNull
+    protected abstract Injector createInjector();
 }

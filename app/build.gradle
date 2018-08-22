@@ -38,11 +38,6 @@ dependencies {
     implementation "${packages.support}:recyclerview-v7:${versions.support}"
     implementation "${packages.support}.constraint:constraint-layout:1.1.2"
     
-    implementation "${packages.dagger}:dagger:${versions.dagger}"
-    annotationProcessor "${packages.dagger}:dagger-compiler:${versions.dagger}"
-    implementation "${packages.dagger}:dagger-android-support:${versions.dagger}"
-    annotationProcessor "${packages.dagger}:dagger-android-processor:${versions.dagger}"
-    
     implementation "${packages.rxjava}:rxjava:2.2.0"
     implementation "${packages.rxjava}:rxandroid:2.0.2"
     

@@ -3,8 +3,6 @@ package ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createne
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.model.PdfExporter;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.BasePresenter;
@@ -15,13 +13,17 @@ import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew
 public class CreateNewPresenterImpl extends BasePresenter<CreateNewState>
         implements CreateNewPresenter {
 
-    @Inject CreateNewView view;
-    @Inject PdfExporter pdfExporter;
+    private final CreateNewView view;
+    private final PdfExporter pdfExporter;
 
     private List<PageContent> pages;
 
-    @Inject
-    CreateNewPresenterImpl() {}
+    public CreateNewPresenterImpl(
+            final CreateNewView view,
+            final PdfExporter pdfExporter) {
+        this.view = view;
+        this.pdfExporter = pdfExporter;
+    }
 
     @Override
     public void onSaveState(final CreateNewState state) {

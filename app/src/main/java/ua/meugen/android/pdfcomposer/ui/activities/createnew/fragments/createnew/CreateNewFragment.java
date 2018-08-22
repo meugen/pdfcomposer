@@ -2,7 +2,6 @@ package ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createne
 
 import android.Manifest;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -15,10 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
+import ua.meugen.android.pdfcomposer.ui.activities.base.Injector;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.binding.CreateNewBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.presenter.CreateNewPresenter;
@@ -28,8 +25,6 @@ import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew
 
 public class CreateNewFragment extends BaseFragment<CreateNewState, CreateNewPresenter, CreateNewBinding>
         implements CreateNewView {
-
-    @Inject @ActivityContext Context context;
 
     @Nullable
     @Override
@@ -76,7 +71,7 @@ public class CreateNewFragment extends BaseFragment<CreateNewState, CreateNewPre
 
     @Override
     public void exportToPdf() {
-        if (ContextCompat.checkSelfPermission(context, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 == PackageManager.PERMISSION_GRANTED) {
             presenter.exportPdf();
         } else {
@@ -122,5 +117,10 @@ public class CreateNewFragment extends BaseFragment<CreateNewState, CreateNewPre
         Snackbar.make(binding.get(R.id.container),
                 R.string.message_page_didnt_complete,
                 Snackbar.LENGTH_LONG).show();
+    }
+
+    @Override
+    protected Injector createInjector() {
+        return new CreateNewFragmentInjector(this);
     }
 }

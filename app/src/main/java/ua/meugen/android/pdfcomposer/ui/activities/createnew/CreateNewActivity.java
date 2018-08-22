@@ -3,6 +3,7 @@ package ua.meugen.android.pdfcomposer.ui.activities.createnew;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -10,12 +11,11 @@ import android.util.Log;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.model.PdfExporter;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivity;
+import ua.meugen.android.pdfcomposer.ui.activities.base.Injector;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.AskForNameDialog;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.AskForNameListener;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.CreateNewFragment;
@@ -35,7 +35,7 @@ public class CreateNewActivity extends BaseActivity implements PdfExporter, AskF
         context.startActivity(intent);
     }
 
-    @Inject FragmentManager fragmentManager;
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(@Nullable final Bundle savedInstanceState) {
@@ -82,5 +82,11 @@ public class CreateNewActivity extends BaseActivity implements PdfExporter, AskF
                 .remove(progressFragment)
                 .show(createNewFragment)
                 .commit();
+    }
+
+    @NonNull
+    @Override
+    protected Injector createInjector() {
+        return new CreateNewActivityInjector(this);
     }
 }

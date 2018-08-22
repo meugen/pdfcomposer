@@ -17,7 +17,6 @@ import java.util.Locale;
 import javax.inject.Inject;
 
 import ua.meugen.android.pdfcomposer.R;
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
 
 public class PdfItemsAdapter extends RecyclerView.Adapter<PdfItemsAdapter.Holder> {
@@ -28,7 +27,7 @@ public class PdfItemsAdapter extends RecyclerView.Adapter<PdfItemsAdapter.Holder
 
     @Inject
     public PdfItemsAdapter(
-            @ActivityContext final Context context,
+            final Context context,
             final OnPdfItemClickListener listener) {
         this.inflater = LayoutInflater.from(context);
         this.listener = listener;

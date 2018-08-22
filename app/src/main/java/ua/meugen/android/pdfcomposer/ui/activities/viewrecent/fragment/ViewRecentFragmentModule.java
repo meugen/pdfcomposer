@@ -4,7 +4,6 @@ import android.support.v4.app.Fragment;
 
 import dagger.Binds;
 import dagger.Module;
-import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragmentModule;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.EmptyStateImpl;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.OnPdfItemClickListener;

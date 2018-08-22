@@ -1,29 +1,26 @@
 package ua.meugen.android.pdfcomposer.app;
 
-import android.app.Activity;
 import android.app.Application;
+import android.content.Context;
 
-import javax.inject.Inject;
+import ua.meugen.android.pdfcomposer.app.di.AppComponent;
+import ua.meugen.android.pdfcomposer.app.di.AppComponentImpl;
 
-import dagger.android.AndroidInjector;
-import dagger.android.DispatchingAndroidInjector;
-import dagger.android.HasActivityInjector;
-import ua.meugen.android.pdfcomposer.app.di.DaggerAppComponent;
+public class PdfComposer extends Application {
 
-public class PdfComposer extends Application implements HasActivityInjector {
+    public static PdfComposer from(final Context context) {
+        return (PdfComposer) context.getApplicationContext();
+    }
 
-    @Inject DispatchingAndroidInjector<Activity> activityInjector;
+    private AppComponent component;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        DaggerAppComponent.builder()
-                .create(this)
-                .inject(this);
+        component = new AppComponentImpl(this);
     }
 
-    @Override
-    public AndroidInjector<Activity> activityInjector() {
-        return activityInjector;
+    public AppComponent getAppComponent() {
+        return component;
     }
 }

@@ -18,12 +18,9 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
 
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import ua.meugen.android.pdfcomposer.R;
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.db.dao.PdfItemDao;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
@@ -34,13 +31,17 @@ public class PdfExportActionApi implements AppActionApi<PdfExportRequest, PdfExp
 
     private static final String TAG = PdfExportActionApi.class.getSimpleName();
 
-    @Inject @ActivityContext Context context;
-    @Inject PdfItemDao pdfItemDao;
+    private final Context context;
+    private final PdfItemDao pdfItemDao;
 
     private Paint paint;
 
-    @Inject
-    PdfExportActionApi() {}
+    public PdfExportActionApi(
+            final Context context,
+            final PdfItemDao pdfItemDao) {
+        this.context = context;
+        this.pdfItemDao = pdfItemDao;
+    }
 
     @Override
     public Observable<PdfExportProgressEvent> action(final PdfExportRequest request) {

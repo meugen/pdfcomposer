@@ -1,20 +1,17 @@
 package ua.meugen.android.pdfcomposer.app.di;
 
-import javax.inject.Singleton;
+import android.support.annotation.MainThread;
 
-import dagger.Component;
-import dagger.android.AndroidInjector;
-import dagger.android.support.AndroidSupportInjectionModule;
-import ua.meugen.android.pdfcomposer.app.PdfComposer;
-import ua.meugen.android.pdfcomposer.app.di.modules.ActivitiesModule;
-import ua.meugen.android.pdfcomposer.app.di.modules.AppModule;
-import ua.meugen.android.pdfcomposer.app.di.modules.DbModule;
+import ua.meugen.android.pdfcomposer.model.actions.AppActionApi;
+import ua.meugen.android.pdfcomposer.model.actions.PdfExportRequest;
+import ua.meugen.android.pdfcomposer.model.db.dao.PdfItemDao;
+import ua.meugen.android.pdfcomposer.model.events.PdfExportProgressEvent;
+import ua.meugen.android.pdfcomposer.ui.rxloader.LifecycleHandler;
 
-@Singleton
-@Component(modules = {AppModule.class, ActivitiesModule.class,
-        DbModule.class, AndroidSupportInjectionModule.class})
-public interface AppComponent extends AndroidInjector<PdfComposer> {
+public interface AppComponent {
 
-    @Component.Builder
-    abstract class Builder extends AndroidInjector.Builder<PdfComposer> {}
+    @MainThread
+    PdfItemDao getPdfItemDao();
+
+    AppActionApi<PdfExportRequest, PdfExportProgressEvent> getPdfExportActionApi();
 }

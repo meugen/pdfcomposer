@@ -2,8 +2,6 @@ package ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createne
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.utils.CollectionUtils;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.BaseState;
@@ -12,9 +10,6 @@ import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.BaseState
 public class CreateNewStateImpl extends BaseState implements CreateNewState {
 
     private static final String PARAM_PAGES = "pages";
-
-    @Inject
-    CreateNewStateImpl() {}
 
     @Override
     public List<PageContent> getPages() {

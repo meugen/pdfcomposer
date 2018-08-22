@@ -9,8 +9,6 @@ import android.widget.ImageView;
 
 import java.lang.ref.WeakReference;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.binding.BaseBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew.view.CreateNewView;
@@ -20,9 +18,6 @@ import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.createnew
  */
 public class CreateNewBindingImpl extends BaseBinding
         implements CreateNewBinding {
-
-    @Inject
-    CreateNewBindingImpl() {}
 
     @Override
     public void setupListeners(final CreateNewView view) {

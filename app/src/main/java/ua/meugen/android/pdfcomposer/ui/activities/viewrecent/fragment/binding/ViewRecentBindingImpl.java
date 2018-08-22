@@ -11,7 +11,6 @@ import java.util.List;
 import javax.inject.Inject;
 
 import ua.meugen.android.pdfcomposer.R;
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.binding.BaseBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.PdfItemsAdapter;
@@ -22,7 +21,8 @@ import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.
 public class ViewRecentBindingImpl extends BaseBinding
         implements ViewRecentBinding {
 
-    @Inject @ActivityContext Context context;
+    @Inject
+    Context context;
     @Inject PdfItemsAdapter adapter;
 
     @Inject

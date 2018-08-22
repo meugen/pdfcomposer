@@ -21,16 +21,24 @@ public class ProgressPresenterImpl extends BasePresenter<ProgressState>
 
     private static final int LOADER_ID = 0;
 
-    @Inject AppActionApi<PdfExportRequest, PdfExportProgressEvent> action;
-    @Inject LifecycleHandler lifecycleHandler;
-    @Inject ProgressView view;
-    @Inject PdfExporter pdfExporter;
+    private final AppActionApi<PdfExportRequest, PdfExportProgressEvent> action;
+    private final LifecycleHandler lifecycleHandler;
+    private final ProgressView view;
+    private final PdfExporter pdfExporter;
 
     private String name;
     private List<PageContent> pages;
 
-    @Inject
-    ProgressPresenterImpl() {}
+    public ProgressPresenterImpl(
+            final AppActionApi<PdfExportRequest, PdfExportProgressEvent> action,
+            final LifecycleHandler lifecycleHandler,
+            final ProgressView view,
+            final PdfExporter pdfExporter) {
+        this.action = action;
+        this.lifecycleHandler = lifecycleHandler;
+        this.view = view;
+        this.pdfExporter = pdfExporter;
+    }
 
     @Override
     public void onSaveState(final ProgressState state) {

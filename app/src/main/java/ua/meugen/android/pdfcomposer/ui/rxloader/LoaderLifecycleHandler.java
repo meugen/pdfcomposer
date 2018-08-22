@@ -5,21 +5,22 @@ import android.os.Bundle;
 import android.support.v4.app.LoaderManager;
 import android.support.v4.content.Loader;
 
-import javax.inject.Inject;
-
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.ObservableTransformer;
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.utils.RxUtils;
 
 public class LoaderLifecycleHandler implements LifecycleHandler {
 
-    @Inject @ActivityContext Context context;
-    @Inject LoaderManager manager;
+    private final Context context;
+    private final LoaderManager manager;
 
-    @Inject
-    LoaderLifecycleHandler() {}
+    public LoaderLifecycleHandler(
+            final Context context,
+            final LoaderManager manager) {
+        this.context = context;
+        this.manager = manager;
+    }
 
     private <T> ObservableSource<T> load(
             final Observable<T> upstream,

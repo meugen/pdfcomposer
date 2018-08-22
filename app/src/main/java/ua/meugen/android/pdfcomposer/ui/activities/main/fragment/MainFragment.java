@@ -11,7 +11,6 @@ import android.view.ViewGroup;
 import javax.inject.Inject;
 
 import ua.meugen.android.pdfcomposer.R;
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.MvpPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
@@ -22,7 +21,8 @@ import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.ViewRecentActivity
 
 public class MainFragment extends BaseFragment<MvpState, MvpPresenter<MvpState>, MainBinding> implements MainView {
 
-    @Inject @ActivityContext Context context;
+    @Inject
+    Context context;
 
     @Nullable
     @Override

@@ -4,10 +4,7 @@ import android.content.Context;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.events.PdfExportProgressEvent;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.binding.BaseBinding;
 
@@ -17,10 +14,11 @@ import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.binding.BaseBin
 public class ProgressBindingImpl extends BaseBinding
         implements ProgressBinding {
 
-    @Inject @ActivityContext Context context;
+    private final Context context;
 
-    @Inject
-    ProgressBindingImpl() {}
+    public ProgressBindingImpl(final Context context) {
+        this.context = context;
+    }
 
     @Override
     public void displayProgress(final PdfExportProgressEvent event) {

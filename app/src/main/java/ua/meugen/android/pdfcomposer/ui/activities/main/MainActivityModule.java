@@ -5,7 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import dagger.Binds;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
-import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivityModule;
 import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.MainFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.MainFragmentModule;
 

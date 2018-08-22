@@ -13,12 +13,10 @@ import android.widget.EditText;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
-import ua.meugen.android.pdfcomposer.app.di.qualifiers.ActivityContext;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.utils.CollectionUtils;
+import ua.meugen.android.pdfcomposer.ui.activities.base.Injector;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseDialogFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.presenter.AskForNamePresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.state.AskForNameState;
@@ -37,14 +35,13 @@ public class AskForNameDialog extends BaseDialogFragment<AskForNameState, AskFor
         return dialog;
     }
 
-    @Inject @ActivityContext Context context;
-    @Inject AskForNameListener listener;
-
     private AlertDialog alertDialog;
 
     @NonNull
     @Override
     public Dialog onCreateDialog(final Bundle savedInstanceState) {
+        final Context context = getContext();
+
         final EditText editText = new EditText(context);
         editText.setInputType(InputType.TYPE_CLASS_TEXT);
         editText.setText(presenter.getName());
@@ -69,6 +66,7 @@ public class AskForNameDialog extends BaseDialogFragment<AskForNameState, AskFor
     @Override
     public void onClick(final DialogInterface dialog, final int which) {
         if (which == AlertDialog.BUTTON_POSITIVE) {
+            final AskForNameListener listener = (AskForNameListener) getContext();
             listener.onDocumentNamed(presenter.getName(), presenter.getPages());
         }
     }
@@ -76,6 +74,11 @@ public class AskForNameDialog extends BaseDialogFragment<AskForNameState, AskFor
     private void updatePositiveButtonEnabled(final String name) {
         alertDialog.getButton(AlertDialog.BUTTON_POSITIVE)
                 .setEnabled(name != null && name.trim().length() > 0);
+    }
+
+    @Override
+    protected Injector createInjector() {
+        return Injector.EMPTY;
     }
 
     private class TextWatcherImpl implements TextWatcher {

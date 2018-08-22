@@ -5,26 +5,23 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 
-import javax.inject.Inject;
-
-import dagger.android.support.AndroidSupportInjection;
+import ua.meugen.android.pdfcomposer.app.PdfComposer;
+import ua.meugen.android.pdfcomposer.ui.activities.base.Injector;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.MvpPresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.BaseState;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.view.MvpView;
 
 
-public class BaseDialogFragment<S extends MvpState, P extends MvpPresenter<S>>
+public abstract class BaseDialogFragment<S extends MvpState, P extends MvpPresenter<S>>
         extends DialogFragment implements MvpView {
 
-    @Inject
     protected P presenter;
-    @Inject
     protected S state;
 
     @Override
     public void onAttach(final Context context) {
-        AndroidSupportInjection.inject(this);
+        inject(context);
         super.onAttach(context);
     }
 
@@ -53,4 +50,11 @@ public class BaseDialogFragment<S extends MvpState, P extends MvpPresenter<S>>
         super.onDestroy();
         presenter.clear();
     }
+
+    private void inject(final Context context) {
+        final Injector injector = createInjector();
+        injector.inject(PdfComposer.from(context).getAppComponent());
+    }
+
+    protected abstract Injector createInjector();
 }
