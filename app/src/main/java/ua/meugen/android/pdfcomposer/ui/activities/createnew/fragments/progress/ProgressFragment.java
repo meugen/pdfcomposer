@@ -13,6 +13,7 @@ import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.events.PdfExportProgressEvent;
 import ua.meugen.android.pdfcomposer.model.utils.CollectionUtils;
+import ua.meugen.android.pdfcomposer.ui.activities.base.Injector;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.binding.ProgressBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress.presenter.ProgressPresenter;
@@ -53,5 +54,10 @@ public class ProgressFragment extends BaseFragment<ProgressState, ProgressPresen
     @Override
     public void onUpdateProgress(final PdfExportProgressEvent event) {
         binding.displayProgress(event);
+    }
+
+    @Override
+    protected Injector createInjector() {
+        return new ProgressFragmentInjector(this);
     }
 }

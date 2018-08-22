@@ -4,8 +4,6 @@ import android.view.View;
 
 import java.lang.ref.WeakReference;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.binding.BaseBinding;
 import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.view.MainView;
@@ -15,9 +13,6 @@ import ua.meugen.android.pdfcomposer.ui.activities.main.fragment.view.MainView;
  */
 public class MainBindingImpl extends BaseBinding
         implements MainBinding {
-
-    @Inject
-    MainBindingImpl() {}
 
     @Override
     public void setupListeners(final MainView view) {

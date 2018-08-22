@@ -13,10 +13,9 @@ import android.view.ViewGroup;
 import java.io.File;
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
+import ua.meugen.android.pdfcomposer.ui.activities.base.Injector;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.BaseFragment;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.MvpState;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.OnPdfItemClickListener;
@@ -27,9 +26,6 @@ import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.view.View
 
 public class ViewRecentFragment extends BaseFragment<MvpState, ViewRecentPresenter, ViewRecentBinding>
         implements ViewRecentView, OnPdfItemClickListener {
-
-    @Inject
-    Context context;
 
     @Nullable
     @Override
@@ -61,9 +57,16 @@ public class ViewRecentFragment extends BaseFragment<MvpState, ViewRecentPresent
 
     @Override
     public void onPdfItemClick(final PdfItemEntity entity) {
+        final Context context = getContext();
+
         final Intent intent = new Intent(Intent.ACTION_VIEW);
         intent.setData(Uri.fromFile(new File(entity.path)));
         context.startActivity(Intent.createChooser(intent,
                 getText(R.string.title_open_file_for_view)));
+    }
+
+    @Override
+    protected Injector createInjector() {
+        return new ViewRecentFragmentInjector(this);
     }
 }

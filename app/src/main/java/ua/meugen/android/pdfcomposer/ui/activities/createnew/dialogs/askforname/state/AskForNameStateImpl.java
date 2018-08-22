@@ -2,17 +2,12 @@ package ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.model.utils.CollectionUtils;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.state.BaseState;
 
 
 public class AskForNameStateImpl extends BaseState implements AskForNameState {
-
-    @Inject
-    AskForNameStateImpl() {}
 
     @Override
     public String getName() {

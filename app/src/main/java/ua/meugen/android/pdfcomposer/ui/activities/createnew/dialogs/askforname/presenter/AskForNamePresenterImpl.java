@@ -2,8 +2,6 @@ package ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.model.data.PageContent;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.BasePresenter;
 import ua.meugen.android.pdfcomposer.ui.activities.createnew.dialogs.askforname.state.AskForNameState;
@@ -14,9 +12,6 @@ public class AskForNamePresenterImpl extends BasePresenter<AskForNameState>
 
     private String name;
     private List<PageContent> pages;
-
-    @Inject
-    AskForNamePresenterImpl() {}
 
     @Override
     public void onSaveState(final AskForNameState state) {

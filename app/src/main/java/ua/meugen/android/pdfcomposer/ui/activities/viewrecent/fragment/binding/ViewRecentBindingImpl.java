@@ -8,11 +8,10 @@ import android.view.View;
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.binding.BaseBinding;
+import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.OnPdfItemClickListener;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.PdfItemsAdapter;
 
 /**
@@ -21,12 +20,17 @@ import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.adapters.
 public class ViewRecentBindingImpl extends BaseBinding
         implements ViewRecentBinding {
 
-    @Inject
-    Context context;
-    @Inject PdfItemsAdapter adapter;
+    private final Context context;
+    private final OnPdfItemClickListener listener;
 
-    @Inject
-    ViewRecentBindingImpl() {}
+    private PdfItemsAdapter adapter;
+
+    public ViewRecentBindingImpl(
+            final Context context,
+            final OnPdfItemClickListener listener) {
+        this.context = context;
+        this.listener = listener;
+    }
 
     @Override
     public void setupRecycler() {
@@ -35,6 +39,7 @@ public class ViewRecentBindingImpl extends BaseBinding
                 DividerItemDecoration.VERTICAL));
         recycler.setLayoutManager(new GridLayoutManager(context,
                 context.getResources().getInteger(R.integer.recent_pdf_items_span_count)));
+        adapter = new PdfItemsAdapter(context, listener);
         recycler.setAdapter(adapter);
     }
 

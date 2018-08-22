@@ -14,8 +14,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import javax.inject.Inject;
-
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.model.db.entity.PdfItemEntity;
 
@@ -25,7 +23,6 @@ public class PdfItemsAdapter extends RecyclerView.Adapter<PdfItemsAdapter.Holder
     private OnPdfItemClickListener listener;
     private List<PdfItemEntity> items;
 
-    @Inject
     public PdfItemsAdapter(
             final Context context,
             final OnPdfItemClickListener listener) {

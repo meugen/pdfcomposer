@@ -2,8 +2,6 @@ package ua.meugen.android.pdfcomposer.ui.activities.createnew.fragments.progress
 
 import java.util.List;
 
-import javax.inject.Inject;
-
 import io.reactivex.disposables.Disposable;
 import ua.meugen.android.pdfcomposer.model.PdfExporter;
 import ua.meugen.android.pdfcomposer.model.actions.AppActionApi;

@@ -1,7 +1,5 @@
 package ua.meugen.android.pdfcomposer.ui.activities.viewrecent.fragment.presenter;
 
-import javax.inject.Inject;
-
 import io.reactivex.disposables.Disposable;
 import ua.meugen.android.pdfcomposer.model.db.dao.PdfItemDao;
 import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.presenter.BasePresenter;
@@ -13,12 +11,18 @@ import ua.meugen.android.pdfcomposer.ui.rxloader.LifecycleHandler;
 public class ViewRecentPresenterImpl extends BasePresenter<MvpState>
         implements ViewRecentPresenter {
 
-    @Inject PdfItemDao pdfItemDao;
-    @Inject LifecycleHandler lifecycleHandler;
-    @Inject ViewRecentView view;
+    private final PdfItemDao pdfItemDao;
+    private final LifecycleHandler lifecycleHandler;
+    private final ViewRecentView view;
 
-    @Inject
-    ViewRecentPresenterImpl() {}
+    public ViewRecentPresenterImpl(
+            final PdfItemDao pdfItemDao,
+            final LifecycleHandler lifecycleHandler,
+            final ViewRecentView view) {
+        this.pdfItemDao = pdfItemDao;
+        this.lifecycleHandler = lifecycleHandler;
+        this.view = view;
+    }
 
     @Override
     public void load() {

@@ -78,7 +78,7 @@ public class AskForNameDialog extends BaseDialogFragment<AskForNameState, AskFor
 
     @Override
     protected Injector createInjector() {
-        return Injector.EMPTY;
+        return new AskForNameDialogInjector(this);
     }
 
     private class TextWatcherImpl implements TextWatcher {

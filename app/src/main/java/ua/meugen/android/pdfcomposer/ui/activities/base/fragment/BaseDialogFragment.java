@@ -16,8 +16,8 @@ import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.view.MvpView;
 public abstract class BaseDialogFragment<S extends MvpState, P extends MvpPresenter<S>>
         extends DialogFragment implements MvpView {
 
-    protected P presenter;
-    protected S state;
+    public P presenter;
+    public S state;
 
     @Override
     public void onAttach(final Context context) {

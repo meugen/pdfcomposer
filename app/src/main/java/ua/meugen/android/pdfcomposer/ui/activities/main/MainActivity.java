@@ -3,9 +3,11 @@ package ua.meugen.android.pdfcomposer.ui.activities.main;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 
 import ua.meugen.android.pdfcomposer.R;
 import ua.meugen.android.pdfcomposer.ui.activities.base.BaseActivity;
+import ua.meugen.android.pdfcomposer.ui.activities.base.Injector;
 import ua.meugen.android.pdfcomposer.ui.activities.viewrecent.ViewRecentActivity;
 
 public class MainActivity extends BaseActivity {
@@ -30,5 +32,11 @@ public class MainActivity extends BaseActivity {
         if (intent.getBooleanExtra(EXTRA_OPEN_RECENT_PDFS, false)) {
             ViewRecentActivity.start(this);
         }
+    }
+
+    @NonNull
+    @Override
+    protected Injector createInjector() {
+        return Injector.EMPTY;
     }
 }
