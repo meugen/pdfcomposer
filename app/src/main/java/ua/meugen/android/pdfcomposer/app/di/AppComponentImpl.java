@@ -2,8 +2,6 @@ package ua.meugen.android.pdfcomposer.app.di;
 
 import android.arch.persistence.room.Room;
 
-import java.lang.ref.SoftReference;
-
 import ua.meugen.android.pdfcomposer.app.PdfComposer;
 import ua.meugen.android.pdfcomposer.model.actions.AppActionApi;
 import ua.meugen.android.pdfcomposer.model.actions.PdfExportActionApi;
@@ -19,7 +17,7 @@ public class AppComponentImpl implements AppComponent {
 
     private final PdfComposer composer;
 
-    private final SoftSingleton<PdfItemDao> pdfItemDao = new SoftSingleton<>();
+    private final Singleton<PdfItemDao> pdfItemDao = Singleton.create(true);
 
     public AppComponentImpl(final PdfComposer composer) {
         this.composer = composer;
@@ -45,24 +43,5 @@ public class AppComponentImpl implements AppComponent {
                 .databaseBuilder(composer, AppDatabase.class, "pdfcomposer")
                 .fallbackToDestructiveMigration()
                 .build();
-    }
-
-    private static class SoftSingleton<T> {
-
-        private SoftReference<T> ref;
-
-        public T get(final Creator<T> creator) {
-            T result = ref == null ? null : ref.get();
-            if (result == null) {
-                result = creator.create();
-                ref = new SoftReference<>(result);
-            }
-            return result;
-        }
-    }
-
-    private interface Creator<T> {
-
-        T create();
     }
 }
