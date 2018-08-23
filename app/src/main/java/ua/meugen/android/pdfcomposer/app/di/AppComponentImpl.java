@@ -1,6 +1,7 @@
 package ua.meugen.android.pdfcomposer.app.di;
 
 import android.arch.persistence.room.Room;
+import android.content.Context;
 
 import ua.meugen.android.pdfcomposer.app.PdfComposer;
 import ua.meugen.android.pdfcomposer.model.actions.AppActionApi;
@@ -25,7 +26,7 @@ public class AppComponentImpl implements AppComponent {
 
     @Override
     public PdfItemDao getPdfItemDao() {
-        return pdfItemDao.get(this::createPdfItemDao);
+        return pdfItemDao.get(new PdfItemDaoCreator(composer));
     }
 
     @Override
@@ -33,15 +34,25 @@ public class AppComponentImpl implements AppComponent {
         return new PdfExportActionApi(composer, getPdfItemDao());
     }
 
-    private PdfItemDao createPdfItemDao() {
-        final AppDatabase db = createAppDatabase();
-        return db.pdfItemDao();
-    }
+    private static class PdfItemDaoCreator implements Singleton.Creator<PdfItemDao> {
 
-    private AppDatabase createAppDatabase() {
-        return Room
-                .databaseBuilder(composer, AppDatabase.class, "pdfcomposer")
-                .fallbackToDestructiveMigration()
-                .build();
+        private final Context context;
+
+        PdfItemDaoCreator(final Context context) {
+            this.context = context;
+        }
+
+        @Override
+        public PdfItemDao create() {
+            final AppDatabase db = createAppDatabase();
+            return db.pdfItemDao();
+        }
+
+        private AppDatabase createAppDatabase() {
+            return Room
+                    .databaseBuilder(context, AppDatabase.class, "pdfcomposer")
+                    .fallbackToDestructiveMigration()
+                    .build();
+        }
     }
 }
