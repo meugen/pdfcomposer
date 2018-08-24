@@ -12,8 +12,6 @@ import ua.meugen.android.pdfcomposer.ui.rxloader.LoaderLifecycleHandler;
  */
 public interface Injector {
 
-    Injector EMPTY = c -> {};
-
     @MainThread
     void inject(AppComponent component);
 
@@ -22,5 +20,11 @@ public interface Injector {
         return new LoaderLifecycleHandler(
                 fragment.getContext(),
                 fragment.getLoaderManager());
+    }
+
+    class Empty implements Injector {
+
+        @Override
+        public void inject(final AppComponent component) {}
     }
 }

@@ -27,6 +27,6 @@ public class ViewRecentActivity extends BaseActivity {
     @NonNull
     @Override
     protected Injector createInjector() {
-        return Injector.EMPTY;
+        return new Injector.Empty();
     }
 }
