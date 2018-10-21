@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Составитель PDF</string>
+
+    <string name="title_create_new">Создание нового</string>
+    <string name="title_view_recent">Просмотр предыдущих</string>
+    <string name="title_name_for_document">Имя для документа</string>
+    <string name="title_open_file_for_view">Открыть файл для просмотра</string>
+
+    <string name="button_create_new_document">Создать новый документ</string>
+    <string name="button_view_recent_documents">Посмотреть предыдущие документы</string>
+    <string name="button_load_image">Загрузить изображение</string>
+    <string name="button_add_page">Добавить страницу</string>
+    <string name="button_export_to_pdf">Экспортировать в PDF</string>
+    <string name="button_ok">ОК</string>
+    <string name="button_cancel">Отмена</string>
+
+    <string name="message_page_didnt_complete">Страница не завершена</string>
+    <string name="message_no_recent_pdf_items">Отсутствуют предыдущие документы</string>
+
+    <string name="pdf_export_progress" formatted="true">Экспортировано %d страниц из %d</string>
+
+    <string name="tools_pdf_export_progress">Экспортировано 1 страниц из 10</string>
+    <string name="tools_pdf_name">Test.pdf</string>
+    <string name="tools_pdf_size">200 KB</string>
+    <string name="tools_pdf_date">10.12.2017</string>
+</resources>
