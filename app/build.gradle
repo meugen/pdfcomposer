@@ -1,11 +1,13 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     defaultConfig {
         applicationId "ua.meugen.android.pdfcomposer"
         minSdkVersion 19
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -42,9 +44,13 @@ dependencies {
     implementation "${packages.rxjava}:rxandroid:2.0.2"
     
     implementation "${packages.room}:runtime:${versions.room}"
-    annotationProcessor "${packages.room}:compiler:${versions.room}"
+    kapt "${packages.room}:compiler:${versions.room}"
     implementation "${packages.room}:rxjava2:${versions.room}"
 
     testImplementation "junit:junit:4.12"
     testImplementation "org.mockito:mockito-core:2.21.0"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+}
+repositories {
+    mavenCentral()
 }
