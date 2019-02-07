@@ -34,6 +34,17 @@
             android:name=".ui.activities.viewrecent.ViewRecentActivity"
             android:parentActivityName=".ui.activities.main.MainActivity"
             android:label="@string/title_view_recent"/>
+
+        <provider
+            android:authorities="ua.meugen.android.pdfcomposer.files"
+            android:name="android.support.v4.content.FileProvider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths"/>
+        </provider>
     </application>
 
 </manifest>

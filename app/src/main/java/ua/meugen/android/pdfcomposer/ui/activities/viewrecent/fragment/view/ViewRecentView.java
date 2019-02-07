@@ -8,5 +8,7 @@ import ua.meugen.android.pdfcomposer.ui.activities.base.fragment.view.MvpView;
 
 public interface ViewRecentView extends MvpView {
 
+    String FILES_AUTHORITY = "ua.meugen.android.pdfcomposer.files";
+
     void displayItems(List<PdfItemEntity> items);
 }
