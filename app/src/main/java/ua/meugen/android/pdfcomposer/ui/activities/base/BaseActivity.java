@@ -17,7 +17,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     private void inject() {
         final Injector injector = createInjector();
-        injector.inject(PdfComposer.from(this).getAppComponent());
+        injector.inject(PdfComposer.appComponent(this));
     }
 
     @NonNull

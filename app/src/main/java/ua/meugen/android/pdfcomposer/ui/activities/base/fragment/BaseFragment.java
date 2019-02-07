@@ -70,7 +70,7 @@ public abstract class BaseFragment<S extends MvpState, P extends MvpPresenter<S>
 
     private void inject(final Context context) {
         final Injector injector = createInjector();
-        injector.inject(PdfComposer.from(context).getAppComponent());
+        injector.inject(PdfComposer.appComponent(context));
     }
 
     protected abstract Injector createInjector();
